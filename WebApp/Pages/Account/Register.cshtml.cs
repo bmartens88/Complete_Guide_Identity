@@ -37,17 +37,17 @@ namespace WebApp.Pages.Account
             {
                 Email = RegisterViewModel.Email,
                 UserName = RegisterViewModel.Email,
-                //Department = RegisterViewModel.Department,
-                //Position = RegisterViewModel.Position,
+                Department = RegisterViewModel.Department,
+                Position = RegisterViewModel.Position,
             };
 
-            var claimDepartment = new Claim("Department", RegisterViewModel.Department);
-            var claimPosition = new Claim("Position", RegisterViewModel.Position);
+            //var claimDepartment = new Claim("Department", RegisterViewModel.Department);
+            //var claimPosition = new Claim("Position", RegisterViewModel.Position);
 
             var result = await _userManager.CreateAsync(user, RegisterViewModel.Password);
             if (result.Succeeded)
             {
-                await _userManager.AddClaimsAsync(user, new Claim[] { claimDepartment, claimPosition });
+                //await _userManager.AddClaimsAsync(user, new Claim[] { claimDepartment, claimPosition });
 
                 var confirmationToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 var confirmationLink = Url.PageLink(pageName: "/Account/ConfirmEmail", values: new { userId = user.Id, token = confirmationToken });

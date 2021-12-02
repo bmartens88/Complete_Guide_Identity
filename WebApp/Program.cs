@@ -38,6 +38,8 @@ builder.Services.Configure<SmtpSetting>(builder.Configuration.GetSection("SMTP")
 
 builder.Services.AddSingleton<IEmailService, EmailService>();
 
+builder.Services.AddScoped<IUserClaimsPrincipalFactory<User>, AppClaimsPrincipalFactory>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
